@@ -3,21 +3,11 @@ RUN a2enmod rewrite
 RUN apt-get update && apt-get install -y libpq-dev unzip libaio1 libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev 
 RUN pecl install mcrypt-1.0.2
 RUN docker-php-ext-enable mcrypt
-RUN docker-php-ext-install gd
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install pgsql
-# RUN docker-php-ext-install mbstring
-# RUN docker-php-ext-install json
-# RUN docker-php-ext-install oci8
-RUN echo 'PassEnv CI_ENV' > /etc/apache2/conf-enabled/expose-env.conf && \
-	echo 'PassEnv DB_HOST' >> /etc/apache2/conf-enabled/expose-env.conf && \
-	echo 'PassEnv DB_USER' >> /etc/apache2/conf-enabled/expose-env.conf && \
-	echo 'PassEnv DB_PASS' >> /etc/apache2/conf-enabled/expose-env.conf && \
-	echo 'PassEnv DB_NAME' >> /etc/apache2/conf-enabled/expose-env.conf
+RUN docker-php-ext-install gd mysqli pgsql
+RUN echo 'PassEnv CI_ENV' > /etc/apache2/conf-enabled/expose-env.conf
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 RUN mkdir -p /var/lib/php/sesion
-RUN ls -lash /usr/local/etc/php/conf.d
 RUN echo 'session.save_path = "5;/var/lib/php/sesion"' >> /usr/local/etc/php/php.ini
 
 # # OCI8
