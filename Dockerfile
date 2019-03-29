@@ -8,7 +8,7 @@ RUN echo 'PassEnv CI_ENV' > /etc/apache2/conf-enabled/expose-env.conf
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 RUN mkdir -p /var/lib/php/sesion && chown -R www-data:www-data /var/lib/php/
-RUN echo 'session.save_path = "5;/var/lib/php/sesion"' >> /usr/local/etc/php/php.ini
+RUN echo 'session.save_path = "/var/lib/php/sesion"' >> /usr/local/etc/php/php.ini
 
 # # OCI8
 ADD oracle/instantclient-basic-linux.x64-12.2.0.1.0.zip /tmp/
