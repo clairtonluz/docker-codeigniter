@@ -1,5 +1,6 @@
 FROM php:7.3-apache
 RUN a2enmod rewrite
+RUN a2enmod headers
 RUN apt-get update && apt-get install -y libpq-dev unzip libaio1 libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev 
 RUN pecl install mcrypt-1.0.2
 RUN docker-php-ext-enable mcrypt
