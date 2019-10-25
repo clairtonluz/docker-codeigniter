@@ -22,5 +22,3 @@ RUN echo 'instantclient,/usr/local/instantclient' | pecl install oci8 \
     && docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantclient \
     && docker-php-ext-install oci8 \
     && rm -Rf /tmp/*
-
-EXPOSE 80
